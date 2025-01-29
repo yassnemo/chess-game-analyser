@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# Chess engine
+engines/*
+!engines/stockfish.exe
+
+# Windows
+Thumbs.db
+*.exe
+!stockfish.exe
+Desktop.ini
+
+# IDE
+.vscode/
+*.code-workspace
+.idea/
+
+# Project specific
+*.pgn
+*.csv
+analysis_results/
+data/
+logs/
+*.log
+
+# Temp files
+*~
+*.bak
