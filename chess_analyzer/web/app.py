@@ -37,6 +37,7 @@ def main():
                     
             except Exception as e:
                 st.error(f"Error analyzing game: {str(e)}")
+                st.code(traceback.format_exc())
 
 if __name__ == "__main__":
     main()
