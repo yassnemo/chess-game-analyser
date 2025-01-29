@@ -4,12 +4,22 @@ from chess_analyzer.config import STOCKFISH_PATH
 from tqdm import tqdm
 import traceback
 
-def analyze_game(moves_df, depth=18, time_limit=1):
-    """Analyze game moves with Stockfish"""
+def analyze_game(moves_df, depth=18, time_limit=0.5):
     try:
-        engine = chess.engine.SimpleEngine.popen_uci(str(STOCKFISH_PATH))
+        
+        engine = chess.engine.SimpleEngine.popen_uci(
+            str(STOCKFISH_PATH),
+            timeout=10,
+            creationflags=0x08000000  
+        )
     except Exception as e:
-        raise RuntimeError(f"Failed to start Stockfish: {str(e)}") from e
+        raise RuntimeError(f"""
+        Stockfish startup failed: {str(e)}
+        Verify:
+        1. File exists at {STOCKFISH_PATH}
+        2. You have x64 Windows
+        3. Try different Stockfish version from official site
+        """) from e
 
     analysis = []
     board = chess.Board()
