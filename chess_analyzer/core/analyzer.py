@@ -1,4 +1,3 @@
-# chess_analyzer/core/analyzer.py
 import chess.engine
 import pandas as pd
 from chess_analyzer.config import STOCKFISH_PATH

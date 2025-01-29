@@ -1,3 +1,4 @@
+import re  
 import chess.pgn
 import pandas as pd
 from io import StringIO
