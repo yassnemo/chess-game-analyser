@@ -1,3 +1,4 @@
+# chess_analyzer/core/analyzer.py
 import chess.engine
 import pandas as pd
 from chess_analyzer.config import STOCKFISH_PATH
@@ -20,7 +21,7 @@ def analyze_game(moves_df, depth=18, time_limit=0.1):
                 move = board.parse_san(row['move'])
             except chess.IllegalMoveError:
                 analysis.append({"cpl": 0, "best_move": "", "is_blunder": False})
-                board.push(chess.Move.null())  
+                board.push(chess.Move.null())  # Push null move to maintain turn state
                 continue
 
             try:
