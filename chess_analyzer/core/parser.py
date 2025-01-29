@@ -4,9 +4,13 @@ from io import StringIO
 from pathlib import Path
 
 def parse_pgn(pgn_path):
-    """Parse PGN file into DataFrame and metadata"""
+    """Parse PGN with Lichess annotations"""
     pgn = Path(pgn_path).read_text() if isinstance(pgn_path, (str, Path)) else pgn_path.read().decode()
-    game = chess.pgn.read_game(StringIO(pgn))
+    
+    # Remove Lichess-specific clock annotations
+    cleaned_pgn = re.sub(r'\{\s*\[%clk[^]]*\]\s*\}', '', pgn)
+    
+    game = chess.pgn.read_game(StringIO(cleaned_pgn))
     
     moves = []
     board = game.board()
